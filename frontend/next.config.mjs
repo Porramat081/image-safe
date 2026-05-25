@@ -12,6 +12,10 @@ const nextConfig = {
         protocol: "https",
         hostname: process.env.NEXT_PUBLIC_API_URL || "pub-xxxx.r2.dev",
       },
+      {
+        protocol: "https",
+        hostname: process.env.R2_PUBLIC_URL || "pub-xxxx.r2.dev",
+      },
       // TODO: add your R2 public host, e.g.
       // { protocol: "https", hostname: "pub-xxxx.r2.dev" },
     ],
