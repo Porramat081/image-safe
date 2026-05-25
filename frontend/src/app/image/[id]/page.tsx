@@ -1,3 +1,4 @@
+"use-client";
 // frontend/src/app/image/[id]/page.tsx
 //
 // WHAT  The public detail page for one image (route "/image/:id") — the page you share.
@@ -17,7 +18,11 @@ import CopyButton from "@/components/CopyButton";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 
-export default function ImageDetailPage({ params }: { params: { id: string } }) {
+export default function ImageDetailPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const shareUrl = `${API_URL}/i/${params.id}`;
 
   return (
@@ -26,7 +31,11 @@ export default function ImageDetailPage({ params }: { params: { id: string } }) 
         ← Back to all images
       </Link>
 
-      <img src={shareUrl} alt={`Image ${params.id}`} className="w-full rounded border" />
+      <img
+        src={shareUrl}
+        alt={`Image ${params.id}`}
+        className="w-full rounded border"
+      />
 
       <div className="flex items-center gap-3">
         <input
