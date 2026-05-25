@@ -11,12 +11,28 @@
 //     startup order and full route list become implicit. Explicit wiring is worth it.
 
 import express from "express";
+import { readFileSync } from "fs";
+import { join } from "path";
 import { env } from "./config/env";
+import { pool } from "./db/client";
 import { corsMiddleware } from "./middleware/cors";
 import { errorHandler } from "./middleware/errorHandler";
 import { uploadRouter } from "./routes/upload";
 import { imagesRouter } from "./routes/images";
 import { serveRouter } from "./routes/serve";
+
+// Run migrations before starting the server
+async function runMigrations() {
+  try {
+    const migrationFile = join(__dirname, "db", "migrations", "001_create_images.sql");
+    const sql = readFileSync(migrationFile, "utf-8");
+    await pool.query(sql);
+    console.log("✓ Migrations applied successfully");
+  } catch (err) {
+    console.error("✗ Migration failed:", err);
+    process.exit(1);
+  }
+}
 
 const app = express();
 
@@ -35,8 +51,13 @@ app.use("/i", serveRouter);
 // MUST be last: catches errors thrown/forwarded by every route above.
 app.use(errorHandler);
 
-app.listen(env.PORT, () => {
-  console.log(
-    `API listening on http://localhost:${env.PORT} (storage driver: ${env.STORAGE_DRIVER})`
-  );
-});
+// Run migrations and start server
+(async () => {
+  await runMigrations();
+  app.listen(env.PORT, () => {
+    console.log(
+      `API listening on http://localhost:${env.PORT} (storage driver: ${env.STORAGE_DRIVER})`
+    );
+  });
+})();
+
