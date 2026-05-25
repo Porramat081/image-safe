@@ -8,6 +8,10 @@ const nextConfig = {
   images: {
     remotePatterns: [
       { protocol: "http", hostname: "localhost" },
+      {
+        protocol: "https",
+        hostname: process.env.NEXT_PUBLIC_API_URL || "pub-xxxx.r2.dev",
+      },
       // TODO: add your R2 public host, e.g.
       // { protocol: "https", hostname: "pub-xxxx.r2.dev" },
     ],
