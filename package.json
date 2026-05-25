@@ -1,0 +1,16 @@
+{
+  "name": "image-hosting",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Image hosting app — Next.js + Express monorepo (learning project)",
+  "workspaces": [
+    "shared",
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev --workspace backend",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "build": "npm run build --workspace shared && npm run build --workspace backend && npm run build --workspace frontend"
+  }
+}

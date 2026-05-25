@@ -1,0 +1,23 @@
+node_modules/
+dist/
+.next/
+out/
+
+# env files (never commit secrets)
+.env
+.env.example
+.env.local
+backend/.env
+frontend/.env.local
+
+# local dev uploads (production uses R2)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# logs / OS cruft
+*.log
+.DS_Store
+Thumbs.db
+
+*.md
+!README.md

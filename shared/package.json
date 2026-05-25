@@ -1,0 +1,11 @@
+{
+  "name": "@image-hosting/shared",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Types shared between frontend and backend — the single source of truth for the API contract.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  }
+}

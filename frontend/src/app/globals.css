@@ -1,0 +1,7 @@
+/* frontend/src/app/globals.css
+   The three Tailwind layers. Imported once in layout.tsx; this is the only place
+   these directives should appear. Add global base styles below the directives. */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
