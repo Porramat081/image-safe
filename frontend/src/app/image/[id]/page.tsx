@@ -15,6 +15,7 @@
 
 import Link from "next/link";
 import CopyButton from "@/components/CopyButton";
+import Image from "next/image";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 
@@ -31,11 +32,11 @@ export default function ImageDetailPage({
         ← Back to all images
       </Link>
 
-      <img
+      <Image
         src={shareUrl}
         alt={`Image ${params.id}`}
         className="w-full rounded border"
-      />
+      ></Image>
 
       <div className="flex items-center gap-3">
         <input
